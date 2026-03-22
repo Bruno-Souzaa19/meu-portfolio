@@ -1,0 +1,1062 @@
+/* ==========================================================================
+   PORTFÓLIO PESSOAL — style.css
+   Organização:
+   1. Variáveis CSS (tema claro e escuro)
+   2. Reset & Base
+   3. Navegação
+   4. Layout geral
+   5. Seção: Sobre mim (Hero)
+   6. Seção: Formação
+   7. Seção: Portfólio
+   8. Seção: Contato
+   9. Rodapé
+   10. Modal
+   11. Animações
+   12. Responsivo (mobile)
+========================================================================== */
+
+
+/* ==========================================================================
+   1. VARIÁVEIS CSS — TEMA CLARO E ESCURO
+========================================================================== */
+
+/* Tema padrão: claro */
+:root {
+  --bg:          #f5f0e8;   /* fundo principal */
+  --bg2:         #ede8dc;   /* fundo alternado */
+  --surface:     #ffffff;   /* superfícies (cards, formulário) */
+  --text:        #1a1a1a;   /* texto principal */
+  --text-muted:  #6b6560;   /* texto secundário */
+  --accent:      #c8472a;   /* cor de destaque (vermelho terroso) */
+  --accent2:     #2a6bc8;   /* destaque secundário */
+  --border:      #d8d0c4;   /* bordas */
+  --nav-bg:      #1a1a1a;   /* fundo da navbar */
+  --nav-text:    #f5f0e8;   /* texto da navbar */
+  --card-bg:     #ffffff;   /* fundo dos cards */
+  --shadow:      rgba(0, 0, 0, 0.10);
+  --tag-bg:      #f0ebe0;
+  --tag-text:    #5a4f42;
+}
+
+/* Tema escuro — ativado via class="dark" no <body> */
+body.dark {
+  --bg:          #12100e;
+  --bg2:         #1c1916;
+  --surface:     #221f1b;
+  --text:        #f0ebe0;
+  --text-muted:  #a09890;
+  --accent:      #e8623e;
+  --accent2:     #5b9ae8;
+  --border:      #3a3530;
+  --nav-bg:      #0a0908;
+  --nav-text:    #f0ebe0;
+  --card-bg:     #221f1b;
+  --shadow:      rgba(0, 0, 0, 0.40);
+  --tag-bg:      #2a2520;
+  --tag-text:    #c0b8a8;
+}
+
+
+/* ==========================================================================
+   2. RESET & BASE
+========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth; /* rolagem suave para âncoras */
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  transition: background-color 0.4s, color 0.4s;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  font-family: 'DM Sans', sans-serif;
+}
+
+
+/* ==========================================================================
+   3. NAVEGAÇÃO
+========================================================================== */
+
+/* Barra principal */
+nav#navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: var(--nav-bg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  height: 64px;
+  border-bottom: 2px solid var(--accent);
+  transition: background 0.4s;
+}
+
+/* Logo / nome */
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  color: var(--nav-text);
+  font-style: italic;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+}
+
+/* Lista de links — desktop */
+.nav-links {
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+}
+
+.nav-links a {
+  color: var(--nav-text);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background 0.2s, color 0.2s;
+  opacity: 0.75;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  background: var(--accent);
+  color: #fff;
+  opacity: 1;
+}
+
+/* Controles do lado direito (tema + hambúrguer) */
+.nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Botão alternar tema claro/escuro */
+.btn-theme {
+  background: none;
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  color: var(--nav-text);
+  cursor: pointer;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  transition: border-color 0.2s, color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.btn-theme:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Botão hambúrguer — oculto no desktop */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 4px;
+}
+
+.nav-hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--nav-text);
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+
+/* Menu mobile — oculto por padrão, aparece com classe .open */
+.nav-mobile {
+  display: none;
+  position: fixed;
+  top: 64px;
+  left: 0;
+  right: 0;
+  background: var(--nav-bg);
+  z-index: 999;
+  padding: 1rem 2rem 1.5rem;
+  border-bottom: 2px solid var(--accent);
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.nav-mobile.open {
+  display: flex;
+}
+
+.nav-mobile a {
+  color: var(--nav-text);
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+  transition: background 0.2s;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.nav-mobile a:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+
+/* ==========================================================================
+   4. LAYOUT GERAL
+========================================================================== */
+
+main {
+  padding-top: 64px; /* compensa a navbar fixa */
+}
+
+section {
+  min-height: 100vh;
+  padding: 5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Container centralizado com largura máxima */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Rótulo pequeno acima dos títulos de seção */
+.section-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+}
+
+/* Título principal de cada seção */
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  font-weight: 900;
+  line-height: 1.1;
+  color: var(--text);
+  margin-bottom: 1.5rem;
+}
+
+/* Linha decorativa vermelha */
+.section-divider {
+  width: 60px;
+  height: 3px;
+  background: var(--accent);
+  margin-bottom: 2.5rem;
+}
+
+/* Botão primário reutilizável */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--accent);
+  color: #fff;
+  padding: 0.85rem 2rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(200, 71, 42, 0.35);
+}
+
+/* Variante largura total (formulário) */
+.btn-full {
+  width: 100%;
+  justify-content: center;
+}
+
+/* Link com cor de destaque */
+.link-accent {
+  color: var(--accent);
+}
+
+.link-accent:hover {
+  text-decoration: underline;
+}
+
+/* Tags reutilizáveis */
+.tag {
+  background: var(--tag-bg);
+  color: var(--tag-text);
+  border: 1px solid var(--border);
+  padding: 0.35rem 0.9rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: background 0.2s, color 0.2s;
+}
+
+.tag:hover {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+
+/* ==========================================================================
+   5. SEÇÃO: SOBRE MIM (HERO)
+========================================================================== */
+
+#sobre {
+  background: var(--bg);
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  padding-top: 64px;
+}
+
+/* Bloco decorativo geométrico direito */
+#sobre::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 45%;
+  height: 100%;
+  background: var(--bg2);
+  clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);
+  z-index: 0;
+  transition: background 0.4s;
+}
+
+
+/* Grid de duas colunas: texto | foto */
+.hero-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* Texto de saudação */
+.hero-greeting {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+/* Nome principal */
+.hero-name {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  font-weight: 900;
+  line-height: 1.05;
+  margin-bottom: 0.5rem;
+}
+
+/* Cargo / área */
+.hero-role {
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  font-weight: 300;
+  margin-bottom: 1.5rem;
+  font-style: italic;
+}
+
+/* Texto de bio */
+.hero-bio {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+  max-width: 480px;
+}
+
+/* Conjunto de tags de hobbies */
+.hero-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+/* Estatísticas numéricas */
+.hero-stats {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+}
+
+/* Wrapper da imagem / avatar */
+.hero-image-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Foto real */
+.hero-avatar {
+  width: 320px;
+  height: 380px;
+  object-fit: cover;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  border-radius: 8px;
+  border: 3px solid var(--border);
+}
+
+/* Placeholder (quando não há foto) */
+.hero-avatar-placeholder {
+  width: 320px;
+  height: 380px;
+  background: var(--bg2);
+  border-radius: 8px;
+  box-shadow: 12px 12px 0 var(--accent);
+  border: 3px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  color: var(--text-muted);
+}
+
+.avatar-icon {
+  font-size: 5rem;
+  opacity: 0.4;
+}
+
+.avatar-hint {
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.5;
+}
+
+
+/* ==========================================================================
+   6. SEÇÃO: FORMAÇÃO
+========================================================================== */
+
+#formacao {
+  background: var(--bg2);
+}
+
+/* Grade: educação | habilidades+idiomas */
+.formacao-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+
+/* Título de coluna */
+.col-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
+  color: var(--text);
+  border-left: 3px solid var(--accent);
+  padding-left: 1rem;
+}
+
+/* --- Timeline de educação --- */
+.timeline {
+  position: relative;
+  padding-left: 2rem;
+}
+
+/* Linha vertical da timeline */
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  bottom: 0;
+  width: 1px;
+  background: var(--border);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+/* Ponto da timeline */
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -2rem;
+  top: 8px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid var(--bg2);
+  box-shadow: 0 0 0 3px var(--accent);
+}
+
+.timeline-year {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.25rem;
+}
+
+.timeline-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.2rem;
+}
+
+.timeline-inst {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* --- Barras de habilidades --- */
+.skills-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.skill-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.4rem;
+}
+
+.skill-name {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.skill-level {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* Trilha cinza da barra */
+.skill-bar {
+  height: 6px;
+  background: var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+/* Preenchimento animado — largura definida via JS (data-width) */
+.skill-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 3px;
+  width: 0; /* começa em 0, animado pelo JS */
+  transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --- Idiomas --- */
+.lang-section {
+  margin-top: 2rem;
+}
+
+.lang-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.lang-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.9rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.lang-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.lang-flag {
+  font-size: 1.5rem;
+}
+
+.lang-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.lang-proficiency {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+
+/* ==========================================================================
+   7. SEÇÃO: PORTFÓLIO
+========================================================================== */
+
+#portfolio {
+  background: var(--bg);
+}
+
+/* Grade responsiva de cards */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Card de projeto */
+.portfolio-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.portfolio-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px var(--shadow);
+  border-color: var(--accent);
+}
+
+/* Banner colorido superior do card */
+.card-banner {
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Overlay sutil no banner */
+.card-banner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.08);
+}
+
+/* Conteúdo do card */
+.card-body {
+  padding: 1.25rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Tags de tecnologias do card */
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.75rem;
+}
+
+.card-tag {
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.2rem 0.6rem;
+  border-radius: 3px;
+  background: var(--tag-bg);
+  color: var(--tag-text);
+}
+
+.card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.5rem;
+}
+
+.card-desc {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  flex: 1;
+}
+
+/* Link "Ver projeto →" */
+.card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  transition: gap 0.2s;
+}
+
+.card-link:hover {
+  gap: 0.7rem;
+}
+
+
+/* ==========================================================================
+   8. SEÇÃO: CONTATO
+========================================================================== */
+
+#contato {
+  background: var(--bg2);
+}
+
+/* Grid: informações | formulário */
+.contato-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+/* Bloco de informações */
+.contato-info h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+  color: var(--text);
+}
+
+.contato-info p {
+  color: var(--text-muted);
+  line-height: 1.8;
+  font-size: 0.95rem;
+  margin-bottom: 2rem;
+}
+
+/* Linha de dado de contato (ícone + texto) */
+.contato-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.contato-item-icon {
+  width: 40px;
+  height: 40px;
+  background: var(--tag-bg);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  border: 1px solid var(--border);
+}
+
+/* --- Formulário --- */
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 6px;
+  padding: 0.85rem 1rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: var(--text-muted);
+  opacity: 0.5;
+}
+
+/* Foco no campo */
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(200, 71, 42, 0.12);
+}
+
+/* Campo inválido (adicionado pelo JS) */
+.form-group input.invalid,
+.form-group textarea.invalid {
+  border-color: #e53e3e;
+  box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.12);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 130px;
+}
+
+/* Mensagem de erro (mostrada pelo JS) */
+.form-error {
+  font-size: 0.75rem;
+  color: #e53e3e;
+  margin-top: 0.35rem;
+  display: none;
+}
+
+.form-error.visible {
+  display: block;
+}
+
+
+/* ==========================================================================
+   9. RODAPÉ
+========================================================================== */
+
+footer {
+  background: var(--nav-bg);
+  color: var(--nav-text);
+  text-align: center;
+  padding: 2rem;
+  font-size: 0.85rem;
+  border-top: 2px solid var(--accent);
+}
+
+footer a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+
+/* ==========================================================================
+   10. MODAL DE CONFIRMAÇÃO
+========================================================================== */
+
+/* Overlay escurecido */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+}
+
+.modal-overlay.open {
+  display: flex;
+}
+
+/* Caixa do modal */
+.modal-box {
+  background: var(--surface);
+  border-radius: 12px;
+  padding: 2.5rem;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3);
+  animation: popIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.modal-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.modal-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+  color: var(--text);
+}
+
+.modal-text {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+
+/* ==========================================================================
+   11. ANIMAÇÕES
+========================================================================== */
+
+/* Entrada dos itens da timeline */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Aparição do modal */
+@keyframes popIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
+}
+
+/* Elementos que surgem ao rolar a página */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* ==========================================================================
+   12. RESPONSIVO — MOBILE (max-width: 768px)
+========================================================================== */
+
+@media (max-width: 768px) {
+
+  /* Oculta links desktop, mostra hambúrguer */
+  .nav-links    { display: none; }
+  .nav-hamburger { display: flex; }
+
+  /* Remove elementos decorativos de fundo no hero */
+  #sobre::before,
+  #sobre::after  { display: none; }
+
+  /* Hero em coluna única */
+  .hero-layout {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 2rem;
+  }
+
+  /* Foto sobe antes do texto */
+  .hero-image-wrap { order: -1; }
+
+  /* Foto menor no mobile */
+  .hero-avatar,
+  .hero-avatar-placeholder {
+    width: 220px;
+    height: 260px;
+    margin: 0 auto;
+  }
+
+  /* Centraliza tags e stats */
+  .hero-tags,
+  .hero-stats { justify-content: center; }
+
+  /* Formação em coluna única */
+  .formacao-grid { grid-template-columns: 1fr; }
+
+  /* Contato em coluna única */
+  .contato-layout { grid-template-columns: 1fr; }
+
+  /* Portfolio em coluna única */
+  .portfolio-grid { grid-template-columns: 1fr; }
+
+  /* Padding menor nas seções */
+  section { padding: 4rem 1.25rem; }
+
+  /* Oculta rótulo do botão de tema */
+  .btn-theme span:last-child { display: none; }
+}

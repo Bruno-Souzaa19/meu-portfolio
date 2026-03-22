@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfólio | Bruno Ramos De Souza</title>
+
+  <!-- Google Fonts: Playfair Display (títulos) + DM Sans (corpo) -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Folha de estilos externa -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- ================================================
+       NAVEGAÇÃO FIXA — visível em todas as seções
+  ================================================ -->
+  <nav id="navbar">
+
+    <a href="#sobre" class="nav-logo">Bruno Ramos</a>
+
+    <!-- Links desktop -->
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#sobre"     class="active">Sobre mim</a></li>
+      <li><a href="#formacao">Formação</a></li>
+      <li><a href="#portfolio">Portfólio</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+
+    <!-- Botão tema + hambúrguer (mobile) -->
+    <div class="nav-controls">
+      <button class="btn-theme" id="btnTheme" onclick="toggleTheme()" title="Alternar tema">
+        <span id="themeIcon">🌙</span>
+        <span id="themeLabel">Escuro</span>
+      </button>
+      <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Abrir menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+  </nav>
+
+  <!-- Menu mobile -->
+  <div class="nav-mobile" id="mobileMenu">
+    <a href="#sobre"     onclick="closeMenu()">Sobre mim</a>
+    <a href="#formacao"  onclick="closeMenu()">Formação</a>
+    <a href="#portfolio" onclick="closeMenu()">Portfólio</a>
+    <a href="#contato"   onclick="closeMenu()">Contato</a>
+  </div>
+
+
+  <!-- ================================================
+       CONTEÚDO PRINCIPAL
+  ================================================ -->
+  <main>
+
+    <!-- ===== SEÇÃO 1: SOBRE MIM ===== -->
+    <section id="sobre">
+      <div class="container">
+        <div class="hero-layout">
+
+          <!-- Texto -->
+          <div class="hero-text">
+            <p class="hero-greeting">Olá, eu sou</p>
+            <h1 class="hero-name">Bruno<br>Ramos De Souza</h1>
+            <p class="hero-role">Estudante de Engenharia de Software</p>
+            <p class="hero-bio">
+              Estudante apaixonado por tecnologia e desenvolvimento de software.
+              Busco constantemente expandir meus conhecimentos em programação,
+              banco de dados e boas práticas de desenvolvimento. Sempre aberto
+              a novos desafios e aprendizados.
+            </p>
+
+            <div class="hero-tags">
+              <span class="tag">☕ Café</span>
+              <span class="tag">📚 Leitura</span>
+              <span class="tag">🎮 Jogos</span>
+              <span class="tag">🎵 Música</span>
+              <span class="tag">🚀 Tecnologia</span>
+              <span class="tag">💻 Programação</span>
+            </div>
+
+            <a href="#contato" class="btn-primary">Entre em contato →</a>
+
+            <div class="hero-stats">
+              <div class="stat">
+                <div class="stat-num">1+</div>
+                <div class="stat-label">Ano na faculdade</div>
+              </div>
+              <div class="stat">
+                <div class="stat-num">4+</div>
+                <div class="stat-label">Cursos</div>
+              </div>
+              <div class="stat">
+                <div class="stat-num">5</div>
+                <div class="stat-label">Tecnologias</div>
+              </div>
+            </div>
+          </div>
+
+<!-- Foto -->
+<div class="hero-image-wrap">
+  <img src="img/Foto_Cv.jpg" alt="Foto de Bruno Ramos De Souza" class="hero-avatar" />
+</div>
+      </div>
+    </section>
+
+
+    <!-- ===== SEÇÃO 2: FORMAÇÃO ===== -->
+    <section id="formacao">
+      <div class="container reveal">
+        <p class="section-label">Minha trajetória</p>
+        <h2 class="section-title">Formação &amp;<br>Habilidades</h2>
+        <div class="section-divider"></div>
+
+        <div class="formacao-grid">
+
+          <!-- Educação -->
+          <div class="formacao-col">
+            <h3 class="col-title">Educação</h3>
+            <div class="timeline">
+
+              <div class="timeline-item">
+                <div class="timeline-year">Out. 2024 – Out. 2028</div>
+                <div class="timeline-title">Engenharia de Software</div>
+                <div class="timeline-inst">Uninter</div>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-year">2021-2023</div>
+                <div class="timeline-title">Ensino Médio Completo</div>
+                <div class="timeline-inst">Colégio Estadual Professor Manoel Macêdo Cirilo</div>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-year">2025</div>
+                <div class="timeline-title">Administrador de Banco de Dados</div>
+                <div class="timeline-inst">IFRS</div>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-year">2026</div>
+                <div class="timeline-title">Java Development</div>
+                <div class="timeline-inst">FIAP</div>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-year">2025</div>
+                <div class="timeline-title">Scrum: Agilidade Em Seu Projeto</div>
+                <div class="timeline-inst">Alura</div>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-year">2025</div>
+                <div class="timeline-title">Git e Github: Compartilhando e Colaborando em Projetos</div>
+                <div class="timeline-inst">Alura</div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Habilidades + Idiomas -->
+          <div class="formacao-col">
+            <h3 class="col-title">Habilidades Técnicas</h3>
+
+            <div class="skills-list">
+
+              <div class="skill-item">
+                <div class="skill-header">
+                  <span class="skill-name">Java</span>
+                  <span class="skill-level">Intermediário</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-fill" data-width="65"></div>
+                </div>
+              </div>
+
+              <div class="skill-item">
+                <div class="skill-header">
+                  <span class="skill-name">SQL</span>
+                  <span class="skill-level">Intermediário</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-fill" data-width="65"></div>
+                </div>
+              </div>
+
+              <div class="skill-item">
+                <div class="skill-header">
+                  <span class="skill-name">Git &amp; GitHub</span>
+                  <span class="skill-level">Intermediário</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-fill" data-width="65"></div>
+                </div>
+              </div>
+
+              <div class="skill-item">
+                <div class="skill-header">
+                  <span class="skill-name">HTML5 / CSS3</span>
+                  <span class="skill-level">Intermediário</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-fill" data-width="65"></div>
+                </div>
+              </div>
+
+              <div class="skill-item">
+                <div class="skill-header">
+                  <span class="skill-name">JavaScript</span>
+                  <span class="skill-level">Básico</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-fill" data-width="35"></div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Idiomas -->
+            <div class="lang-section">
+              <h3 class="col-title">Idiomas</h3>
+              <div class="lang-grid">
+
+                <div class="lang-card">
+                  <div class="lang-flag">🇧🇷</div>
+                  <div>
+                    <div class="lang-name">Português</div>
+                    <div class="lang-proficiency">Nativo</div>
+                  </div>
+                </div>
+
+                <div class="lang-card">
+                  <div class="lang-flag">🇺🇸</div>
+                  <div>
+                    <div class="lang-name">Inglês</div>
+                    <div class="lang-proficiency">Básico</div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+<!-- ===== SEÇÃO 3: PORTFÓLIO ===== -->
+<section id="portfolio">
+  <div class="container reveal">
+    <p class="section-label">Meu trabalho</p>
+    <h2 class="section-title">Portfólio</h2>
+    <div class="section-divider"></div>
+
+    <div class="portfolio-grid">
+
+      <a href="https://github.com/Bruno-Souzaa19/taskmaneger" class="portfolio-card" target="_blank" rel="noopener noreferrer">
+        <div class="card-banner" style="background: linear-gradient(135deg,#667eea,#764ba2);">☕</div>
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="card-tag">Java</span>
+            <span class="card-tag">SQL</span>
+          </div>
+          <h3 class="card-title">Task Manager</h3>
+          <p class="card-desc">Aplicação full stack para gerenciamento de tarefas, desenvolvida com Java no back-end e HTML, CSS e JavaScript no front-end. Praticando Spring Boot, API REST e integração com banco de dados.</p>
+          <span class="card-link">Ver projeto →</span>
+        </div>
+      </a>
+
+      <a href="#" class="portfolio-card" target="_blank" rel="noopener noreferrer">
+        <div class="card-banner" style="background: linear-gradient(135deg,#4facfe,#00f2fe);">🌐</div>
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="card-tag">HTML</span>
+            <span class="card-tag">CSS</span>
+            <span class="card-tag">JavaScript</span>
+          </div>
+          <h3 class="card-title">Geo-Atlas</h3>
+          <p class="card-desc">Aplicação web interativa para explorar rochas, minerais e a Escala de Mohs.</p>
+          <span class="card-link">Ver projeto →</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+
+    <!-- ===== SEÇÃO 4: CONTATO ===== -->
+    <section id="contato">
+      <div class="container reveal">
+        <p class="section-label">Fale comigo</p>
+        <h2 class="section-title">Contato</h2>
+        <div class="section-divider"></div>
+
+        <div class="contato-layout">
+
+          <!-- Informações -->
+          <div class="contato-info">
+            <h3>Vamos conversar?</h3>
+            <p>Estou sempre aberto a novas oportunidades, parcerias e conversas sobre tecnologia. Entre em contato!</p>
+
+            <div class="contato-item">
+              <div class="contato-item-icon">📧</div>
+              <span>brunosouzadev@gmail.com</span>
+            </div>
+            <div class="contato-item">
+              <div class="contato-item-icon">📱</div>
+              <span>(77) 99914-2739 </span>
+            </div>
+            <div class="contato-item">
+              <div class="contato-item-icon">📍</div>
+              <span>Brasil</span>
+            </div>
+            <div class="contato-item">
+              <div class="contato-item-icon">💼</div>
+            <a href="https://www.linkedin.com/in/brunosouzaadev/" target="_blank" rel="noopener" class="link-accent">
+  linkedin.com/in/brunosouzaadev
+</a>
+            </div>
+            <div class="contato-item">
+              <div class="contato-item-icon">🐙</div>
+              <a href="https://github.com/Bruno-Souzaa19" target="_blank" rel="noopener" class="link-accent">
+                github.com/Bruno-Souzaa19
+              </a>
+            </div>
+          </div>
+
+          <!-- Formulário com validação JS -->
+          <form id="contatoForm" novalidate>
+
+            <div class="form-group">
+              <label for="nome">Nome completo *</label>
+              <input type="text" id="nome" name="nome" placeholder="Seu nome completo" autocomplete="name" />
+              <div class="form-error" id="erroNome">Por favor, informe seu nome.</div>
+            </div>
+
+            <div class="form-group">
+              <label for="email">E-mail *</label>
+              <input type="email" id="email" name="email" placeholder="seuemail@exemplo.com" autocomplete="email" />
+              <div class="form-error" id="erroEmail">Informe um e-mail válido (ex: usuario@dominio.com).</div>
+            </div>
+
+            <div class="form-group">
+              <label for="mensagem">Mensagem *</label>
+              <textarea id="mensagem" name="mensagem" placeholder="Escreva sua mensagem aqui..."></textarea>
+              <div class="form-error" id="erroMensagem">Por favor, escreva uma mensagem.</div>
+            </div>
+
+            <button type="submit" class="btn-primary btn-full">Enviar mensagem ✉️</button>
+
+          </form>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ================================================
+       RODAPÉ
+  ================================================ -->
+  <footer>
+    <p>Feito com ❤️ por <strong>Bruno Ramos De Souza</strong> &nbsp;·&nbsp; <a href="#sobre">Voltar ao topo ↑</a></p>
+  </footer>
+
+
+  <!-- ================================================
+       MODAL DE CONFIRMAÇÃO
+  ================================================ -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-box">
+      <div class="modal-icon">✅</div>
+      <h3 class="modal-title">Mensagem enviada!</h3>
+      <p class="modal-text">Obrigado pelo contato. Responderei o mais breve possível.</p>
+      <button class="btn-primary btn-full" onclick="closeModal()">Fechar</button>
+    </div>
+  </div>
+
+  <!-- Script externo -->
+  <script src="script.js"></script>
+
+</body>
+</html>
